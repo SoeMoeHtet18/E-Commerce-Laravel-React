@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" />
 
-    <title>Luminaut - Reveal Your Desire</title>
+    <title>Nat Hti Online Mart - Grab Your Desires</title>
 
     <!-- Bootstrap CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,6 +20,14 @@
     {{-- font awesome --}}
     <script src="https://kit.fontawesome.com/5922c3ed74.js" crossorigin="anonymous"></script>
 
+    {{-- google font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {{-- shadow font --}}
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap" rel="stylesheet">
+    {{-- Bree Serif font --}}
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="/web_assets/css/fontawesome.css" />
     <link rel="stylesheet" href="/web_assets/css/tooplate-main.css" />
@@ -33,19 +41,29 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-        <div class="container" id="main-nav">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <h1>Luminaut</h1>
-            </a>
+    <div class="row">
+        <div class="col-xl-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top px-4">
+                <div class="container" id="main-nav">
+                    <a class="navbar-brand pe-4" href="{{ url('/') }}">
+                        <div class="d-flex align-items-center">
+                            <h1>NH</h1><img src="{{asset('assets/img/flat-icons/store.png')}}" alt=""><h1>Online Mart</h1>
+                        </div>
+                    </a>
+                    <div id="search-box-container">
+                        <input type="text" name="search" id="search" class="form-control">
+                        <ion-icon id="search-icon" name="search-outline"></ion-icon>
+                    </div>
 
-            @include('user.layout.headerNav')
+                    @include('user.layout.headerNav')
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+
+            @yield('content')
         </div>
-    </nav>
-
-    <!-- Page Content -->
-
-    @yield('content')
+    </div>
 
     <!-- Subscribe Form Starts Here -->
     <div class="subscribe-form login-off">
@@ -158,6 +176,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <!-- Additional Scripts -->
     <script src="/web_assets/js/custom.js"></script>

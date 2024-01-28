@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\User\Auth\AuthController;
+use App\Http\Controllers\User\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 /* User Auth*/
 //if auth
 Route::group(['middleware' => 'redirectIfAuth'], function () {
-    Route::get('/login', 'User\Auth\AuthController@showLogin');
-    Route::post('/login', 'User\Auth\AuthController@postLogin');
+    Route::get('/login', [AuthController::class, 'showLogin']);
+    Route::post('/login', [AuthController::class, 'postLogin']);
 
-    Route::get('/register', 'User\Auth\AuthController@showRegister');
-    Route::post('/register', 'User\Auth\AuthController@postRegister');
+    Route::get('/register', [AuthController::class, 'showRegister']);
+    Route::post('/register', [AuthController::class, 'postRegister']);
 });
 //if not auth
 Route::group(['middleware' => 'redirectIfNotAuth'], function () {
@@ -32,7 +34,7 @@ Route::group(['middleware' => 'redirectIfNotAuth'], function () {
 });
 
 /* User Home */
-Route::get('/', 'User\PageController@home');
+Route::get('/', [PageController::class, 'home']);
 Route::get('/products/detail/{slug}', 'User\ProductController@detail');
 Route::get('/products', 'User\PageController@allProducts');
 Route::get('/aboutUs', 'User\PageController@about');

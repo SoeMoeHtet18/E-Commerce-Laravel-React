@@ -1,17 +1,22 @@
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarResponsive">
+<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
     <ul class="navbar-nav ml-auto text-nowrap">
         <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ url('/') }}">{{ __('site.home') }}</a>
+            <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/') }}">
+                <ion-icon name="home-outline"></ion-icon> <span class="outlined-text">{{ __('site.home') }}</span>
+        </a>
         </li>
         <li class="nav-item {{ request()->is('products*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ url('/products?product=all') }}">{{ __('site.pruducts') }}</a>
+            <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/products?product=all') }}">
+                <ion-icon name="earth-outline"></ion-icon><span class="outlined-text">{{ __('site.pruducts') }}</span>
+            </a>
         </li>
         <div class="nav-item dropdown">
-            <a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false" role="button">
-                {{ __('site.category') }}
+            <a class="nav-link d-flex flex-column align-items-center" data-bs-toggle="dropdown"
+                aria-expanded="false" role="button">
+                <ion-icon name="clipboard-outline"></ion-icon><span class="outlined-text">Catalog</span>
             </a>
             <div class="dropdown-menu">
                 <ul class="nav flex-column bg-white text-center">
@@ -25,18 +30,13 @@
             </div>
         </div>
         <li class="nav-item">
-            <a class="nav-link position-relative" href="/profile#/cart">{{ __('site.cart') }}
+            <a class="nav-link d-flex flex-column align-items-center position-relative" href="/profile#/cart">
+                <ion-icon name="cart-outline"></ion-icon><span class="outlined-text">{{ __('site.cart') }}</span>
                 @auth
                 <span id="cart" class="position-absolute top-0 start-100 @if ($cartCount === 0) d-none @endif
                         translate-middle badge bg-danger rounded-pill">{{ $cartCount }}</span>
                 @endauth
             </a>
-        </li>
-        <li class="nav-item  {{ Str::endsWith(url()->full(), 'aboutUs') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ url('/aboutUs') }}">{{ __('site.about') }}</a>
-        </li>
-        <li class="nav-item  {{ Str::endsWith(url()->full(), 'contactUs') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ url('/contactUs') }}">{{ __('site.contact') }}</a>
         </li>
         <small class="small-menu d-none">Account settings</small>
         @guest
@@ -55,11 +55,19 @@
         </li>
         <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/locale/en') }}">{{ __('site.english') }}</a>
         </li>
+        <li class="nav-item nav-hide">
+            <a class="nav-link" href="{{ url('/aboutUs') }}">{{ __('site.about') }}</a>
+        </li>
+        <li class="nav-item nav-hide">
+            <a class="nav-link" href="{{ url('/contactUs') }}">{{ __('site.contact') }}</a>
+        </li>
     </ul>
-    <div class="dropdown" id="account-button">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-gears"></i>
-        </button>
+    <div class="dropdown" id="account-button-container">
+        <a id="account-button" class="d-flex flex-column align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+            aria-expanded="false">
+            <ion-icon name="apps-outline"></ion-icon>
+            <span class="outlined-text">Center</span>
+        </a>
         <ul class="dropdown-menu" id="account-setting">
             @guest
             <li><a class="dropdown-item" href="{{ url('/login') }}">{{ __('site.log in') }}</a></li>

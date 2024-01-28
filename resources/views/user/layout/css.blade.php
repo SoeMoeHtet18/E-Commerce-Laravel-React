@@ -1,9 +1,12 @@
 <style>
-    #account-button {
-        color: #CCCCCC;
-        background-color: #1B3D51;
+    body {
+        background-color: #000000 !important;
     }
-    #account-button ::after {
+    #account-button{
+        margin-left: 15px;
+        color: #ffffff;
+    }
+    #account-button::after {
         display: none;
     }
 
@@ -16,5 +19,28 @@
         background-color: #1B3D51;
         color: #CCCCCC;
         border-radius: 4px;
+    }
+
+    .navbar-brand img {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: 0px 1rem;
+    }
+
+    #search-box-container {
+        width: 100%;
+        position: relative;
+    }
+
+    #search {
+        padding-left: 50px;
+    }
+
+    #search-icon {
+        position: absolute;
+        top: 12%;
+        left: 10px;
+        cursor: pointer;
+        font-size: 30px;
     }
 </style>

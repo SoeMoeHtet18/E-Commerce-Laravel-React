@@ -13,7 +13,6 @@
     </style>
 @endsection
 @section('content')
-    @include('user.layout.banner')
     <div id="root"></div>
 @endsection
 
