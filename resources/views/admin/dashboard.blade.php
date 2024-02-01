@@ -81,6 +81,9 @@
                                         @if ($usersPercent > 0)
                                             <span
                                                 class="text-success text-sm font-weight-bolder">+{{ $usersPercent }}%</span>
+                                        @elseif($usersPercent == 0)
+                                            <span
+                                                class="text-danger text-sm font-weight-bolder">-{{ $usersPercent }}%</span>
                                         @else
                                             <span
                                                 class="text-danger text-sm font-weight-bolder">-{{ $usersPercent }}%</span>
@@ -205,15 +208,23 @@
                                             </div>
                                             <div class="d-flex flex-column">
                                                 <h6 class="mb-1 text-dark text-sm">{{ $category->name }}</h6>
-                                                <span class="text-xs">{{ $category->product_count }} in stock,
+                                                <span class="text-xs">
+                                                    {{ $category->product_count }} in stock,
                                                     <span class="font-weight-bold">
+                                                        @php
+                                                            $soldItems = [];
+                                                        @endphp
+
                                                         @foreach ($category->product as $p)
-                                                            <?php $soldItems[] = intval($p->soldAmount); ?>
+                                                            @php
+                                                                $soldItems[] = intval($p->soldAmount);
+                                                            @endphp
                                                         @endforeach
+
                                                         + {{ array_sum($soldItems) }} sold
-                                                        <?php $soldItems = []; ?>
                                                     </span>
                                                 </span>
+
                                             </div>
                                         </div>
                                         <div class="d-flex">

@@ -26,7 +26,7 @@
                     href="{{ route('category.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-books text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Category</span>
                 </a>
@@ -36,7 +36,7 @@
                     href="{{ route('brand.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-badge text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Brand</span>
                 </a>
@@ -46,7 +46,7 @@
                     href="{{ route('color.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-palette text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Color</span>
                 </a>
@@ -56,7 +56,7 @@
                     href="{{ route('supplier.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-delivery-fast text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Supplier</span>
                 </a>
@@ -66,7 +66,7 @@
                     href="{{ route('product.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Products</span>
                 </a>
@@ -76,7 +76,7 @@
                     href="{{ url('admin/product-add-transaction') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-archive-2 text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Transactions</span>
                 </a>
@@ -86,7 +86,7 @@
                     href="{{ url('admin/order') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Order</span>
                 </a>
@@ -96,7 +96,7 @@
                     href="{{ route('income.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-money-coins text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Income</span>
                 </a>
@@ -106,7 +106,7 @@
                     href="{{ route('outcome.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-credit-card text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Outcome</span>
                 </a>
