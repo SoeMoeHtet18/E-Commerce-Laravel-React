@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\HomeApiController;
+use App\Http\Controllers\Api\ProductApiController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/home', 'Api\HomeApiController@home');
+Route::get('/home', [HomeApiController::class, 'home']);
 Route::get('/product/detail/{slug}', 'Api\ProductApiController@detail');
 Route::post('/like-product', 'Api\ProductApiController@like');
 Route::post('/like', 'Api\ProductApiController@getLike');

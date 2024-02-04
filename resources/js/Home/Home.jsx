@@ -9,21 +9,14 @@ import "../../css/home.css";
 
 export default function Home() {
     const styles = {
-        card: {
-            width: "10rem",
-            textOverflow: "ellipsis",
-        },
-        cardImg: {
-            maxWidth: "211px",
-            height: "200px",
-        },
         lineTrough: {
             display: "inline",
             textDecoration: "line-through black 2px",
         },
     };
     const [featuredProducts, setFeaturedProducts] = useState([]);
-    const [productByCategory, setProductByCategory] = useState([]);
+    const [newArrivalProducts, setNewArrivalProducts] = useState([]);
+    // const [productByCategory, setProductByCategory] = useState([]);
     const [loader, setLoader] = useState(true);
     const [checkProduct, setCheckProduct] = useState(false);
     const [likeCss, setLikeCss] = useState("");
@@ -32,9 +25,10 @@ export default function Home() {
         axios
             .get("/api/home")
             .then((d) => {
-                const { featuredProducts, productByCategory } = d.data.data;
+                const { featuredProducts, newArrivalProducts } = d.data.data;
                 setFeaturedProducts(featuredProducts);
-                setProductByCategory(productByCategory);
+                setNewArrivalProducts(newArrivalProducts);
+                // setProductByCategory(productByCategory);
                 setLikeCss(d.data.css);
                 setLoader(false);
             })
@@ -45,6 +39,23 @@ export default function Home() {
             });
     }, []);
 
+    const data = [
+        {
+            title: {
+                mm_name: "အထင်ကရပစ္စည်းများ",
+                en_name: "Recommended For You",
+            },
+            products: featuredProducts,
+        },
+        {
+            title: {
+                mm_name: "အသစ်ရောက်သည့် ပစ္စည်းများ",
+                en_name: "New Arrivals",
+            },
+            products: newArrivalProducts,
+        },
+    ];
+
     return (
         <>
             {loader && <Spinner />}
@@ -54,243 +65,11 @@ export default function Home() {
                     {!checkProduct && (
                         <div className="px-5">
                             <Banner />
-                            {/* <Swiper
-                            rewind={true}
-                            navigation={true}
-                            modules={[Navigation]}
-                            className="mySwiper"
-                        >
-                            <SwiperSlide>
-                                <div id='banner' style={styles.banner}>
-                                    <p id='bannerText' style={styles.bannerText}>Check Out Our<br/> Brand New Air Jordan1Retro High OG <br /> Prototype</p>
-                                    <img id='banner-box-img' src="/assets/img/banner/box.svg" alt=""/>
-                                    <img id='shoe-one-img' src="/assets/img/banner/shoe_one.svg" alt="" />
-                                    <img id='shoe-two-img' src="/assets/img/banner/shoe_two.svg" alt="" />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>Slide 2</SwiperSlide>
-                            <SwiperSlide>Slide 3</SwiperSlide>
-                        </Swiper> */}
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <div className="section-heading">
-                                            {/* <div className="line-dec" /> */}
-                                            <h1 className="text-center text-white font-bree">
-                                                {window.locale === "mm"
-                                                    ? "အထင်ကရပစ္စည်းများ"
-                                                    : "Recommended For You"}
-                                            </h1>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-12">
-                                        <div className="row">
-                                            {featuredProducts.map((d) => (
-                                                <a
-                                                    href={`/products/detail/${d.slug}`}
-                                                    className="col"
-                                                    key={d.slug}
-                                                >
-                                                    <div className="card p-3 m-2">
-                                                        <div
-                                                            style={{
-                                                                height: "235px",
-                                                                alignItems:
-                                                                    "center",
-                                                                display: "grid",
-                                                            }}
-                                                        >
-                                                            <img
-                                                                src={
-                                                                    d.image_url
-                                                                }
-                                                                alt="Item 1"
-                                                                className="card-img-top"
-                                                                style={
-                                                                    styles.cardImg
-                                                                }
-                                                            />
-                                                        </div>
-                                                        <div className="card-body">
-                                                            <div
-                                                                className="card-text text-nowrap overflow-hidden text-black"
-                                                                style={
-                                                                    styles.card
-                                                                }
-                                                            >
-                                                                {d.name}
-                                                            </div>
-                                                            {d.discount_price ? (
-                                                                <h6 className="mt-2">
-                                                                    <span
-                                                                        className="text-primary"
-                                                                        style={
-                                                                            styles.lineTrough
-                                                                        }
-                                                                    >
-                                                                        $
-                                                                        {
-                                                                            d.sale_price
-                                                                        }
-                                                                    </span>
-                                                                    <span className="mx-2">
-                                                                        $
-                                                                        {d.sale_price -
-                                                                            d.discount_price}
-                                                                        <b className="text-danger ms-2">
-                                                                            {(
-                                                                                (d.discount_price /
-                                                                                    d.sale_price) *
-                                                                                100
-                                                                            ).toPrecision(
-                                                                                2
-                                                                            )}
-                                                                            %
-                                                                            off
-                                                                        </b>
-                                                                    </span>
-                                                                </h6>
-                                                            ) : (
-                                                                <>
-                                                                    <h6 className="mt-2 text-primary">
-                                                                        $
-                                                                        {
-                                                                            d.sale_price
-                                                                        }
-                                                                    </h6>
-                                                                </>
-                                                            )}
-                                                            <ViewAndLike
-                                                                view={
-                                                                    d.view_count
-                                                                }
-                                                                like={
-                                                                    d.like_count
-                                                                }
-                                                                product={d.slug}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {productByCategory.map((d) => (
-                                <div className="container" key={d.slug}>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="section-heading">
-                                                <div className="line-dec" />
-                                                <a
-                                                    href={`products?category=${d.slug}`}
-                                                >
-                                                    <h1>
-                                                        {window.locale === "mm"
-                                                            ? d.mm_name
-                                                            : d.name}
-                                                    </h1>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-12">
-                                            <div className="row">
-                                                {d.product.map((d) => (
-                                                    <a
-                                                        href={`/products/detail/${d.slug}`}
-                                                        className="col"
-                                                        key={d.slug}
-                                                    >
-                                                        <div className="card p-3 m-2">
-                                                            <div
-                                                                style={{
-                                                                    height: "235px",
-                                                                    alignItems:
-                                                                        "center",
-                                                                    display:
-                                                                        "grid",
-                                                                }}
-                                                            >
-                                                                <img
-                                                                    src={
-                                                                        d.image_url
-                                                                    }
-                                                                    alt="Item 1"
-                                                                    style={
-                                                                        styles.cardImg
-                                                                    }
-                                                                />
-                                                            </div>
-                                                            <div className="card-body">
-                                                                <div
-                                                                    className="card-text text-nowrap overflow-hidden text-black"
-                                                                    style={
-                                                                        styles.card
-                                                                    }
-                                                                >
-                                                                    {d.name}
-                                                                </div>
-                                                                {d.discount_price ? (
-                                                                    <h6 className="mt-2">
-                                                                        <span
-                                                                            className="text-primary"
-                                                                            style={
-                                                                                styles.lineTrough
-                                                                            }
-                                                                        >
-                                                                            $
-                                                                            {
-                                                                                d.sale_price
-                                                                            }
-                                                                        </span>
-                                                                        <span className="mx-2">
-                                                                            $
-                                                                            {d.sale_price -
-                                                                                d.discount_price}
-                                                                            <b className="text-danger ms-2">
-                                                                                {(
-                                                                                    (d.discount_price /
-                                                                                        d.sale_price) *
-                                                                                    100
-                                                                                ).toPrecision(
-                                                                                    2
-                                                                                )}
-
-                                                                                %
-                                                                                off
-                                                                            </b>
-                                                                        </span>
-                                                                    </h6>
-                                                                ) : (
-                                                                    <>
-                                                                        <h6 className="mt-2 text-primary">
-                                                                            $
-                                                                            {
-                                                                                d.sale_price
-                                                                            }
-                                                                        </h6>
-                                                                    </>
-                                                                )}
-                                                                <ViewAndLike
-                                                                    view={
-                                                                        d.view_count
-                                                                    }
-                                                                    like={
-                                                                        d.like_count
-                                                                    }
-                                                                    product={
-                                                                        d.slug
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            {data.map(({ title, products }) => (
+                                <ProductShowcase
+                                    title={title}
+                                    products={products}
+                                />
                             ))}
                         </div>
                     )}
@@ -299,3 +78,94 @@ export default function Home() {
         </>
     );
 }
+
+const ProductShowcase = ({ title, products }) => (
+    <div className="container-fluid">
+        <div className="row">
+            <div className="col-md-12">
+                <div className="section-heading">
+                    {/* <div className="line-dec" /> */}
+                    <h1 className="text-center text-white font-bree">
+                        {window.locale === "mm" ? title.mm_name : title.en_name}
+                    </h1>
+                </div>
+            </div>
+            <div className="col-md-12">
+                <div className="row">
+                    {products.map((product) => (
+                        <div key={product.slug} className="col-md-3">
+                            <div className="card p-3 m-2 w-100">
+                                <div className="product-img-container">
+                                    <img
+                                        src={product.image_url}
+                                        alt={product.slug}
+                                        className="product-img"
+                                    />
+                                </div>
+                                <div className="card-body">
+                                    <div className="w-100">
+                                        <h3 className="card-text">
+                                            {product.name}
+                                        </h3>
+                                    </div>
+                                    <div className="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            {product.discount_price ? (
+                                                <h6>
+                                                    <span className="text-black">
+                                                        Price:
+                                                    </span>
+                                                    <span
+                                                        className="text-black"
+                                                        style={
+                                                            styles.lineTrough
+                                                        }
+                                                    >
+                                                        ${product.sale_price}
+                                                    </span>
+                                                    <span className="mx-2">
+                                                        $
+                                                        {product.sale_price -
+                                                            product.discount_price}
+                                                        <b className="text-danger ms-2">
+                                                            {(
+                                                                (product.discount_price /
+                                                                    product.sale_price) *
+                                                                100
+                                                            ).toPrecision(2)}
+                                                            % off
+                                                        </b>
+                                                    </span>
+                                                </h6>
+                                            ) : (
+                                                <>
+                                                    <h6>
+                                                        <span className="text-black">
+                                                            Price:
+                                                        </span>
+                                                        ${product.sale_price}
+                                                    </h6>
+                                                </>
+                                            )}
+                                            <ViewAndLike
+                                                view={product.view_count}
+                                                like={product.like_count}
+                                                product={product.slug}
+                                            />
+                                        </div>
+                                        <button
+                                            className="btn btn-outline-dark py-2"
+                                            style={{ height: "fit-content" }}
+                                        >
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+);

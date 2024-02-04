@@ -38,17 +38,6 @@ class ProductController extends Controller
     // Store Admin Product
     public function store(Request $request)
     {
-        // validation
-        $request->validate([
-            'brand_slug' => 'required',
-            'supplier_id' => 'required',
-            'buying_price' => 'required',
-            'name' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png,webp|max:2048',
-            'sale_price' => 'required',
-            'total_quantity' => 'required',
-            'description' => 'required'
-        ]);
         // image upload
         $image = $request->file('image');
         $image_name = uniqid() . $image->getClientOriginalName();

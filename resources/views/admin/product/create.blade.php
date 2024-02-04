@@ -28,7 +28,7 @@
                     <small class="card-title text-bold">Product info</small>
                     <div class="form-group">
                         <label for="name">Enter product name</label>
-                        <input type="text" name="name" class="form-control" />
+                        <input type="text" name="name" value="{{old('name')}}" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="image">Enter product image</label>

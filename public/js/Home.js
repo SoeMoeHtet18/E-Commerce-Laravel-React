@@ -4489,14 +4489,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Home() {
   var styles = {
-    card: {
-      width: "10rem",
-      textOverflow: "ellipsis"
-    },
-    cardImg: {
-      maxWidth: "211px",
-      height: "200px"
-    },
     lineTrough: {
       display: "inline",
       textDecoration: "line-through black 2px"
@@ -4508,8 +4500,9 @@ function Home() {
     setFeaturedProducts = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    productByCategory = _useState4[0],
-    setProductByCategory = _useState4[1];
+    newArrivalProducts = _useState4[0],
+    setNewArrivalProducts = _useState4[1];
+  // const [productByCategory, setProductByCategory] = useState([]);
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState6 = _slicedToArray(_useState5, 2),
     loader = _useState6[0],
@@ -4526,9 +4519,10 @@ function Home() {
     axios__WEBPACK_IMPORTED_MODULE_8__["default"].get("/api/home").then(function (d) {
       var _d$data$data = d.data.data,
         featuredProducts = _d$data$data.featuredProducts,
-        productByCategory = _d$data$data.productByCategory;
+        newArrivalProducts = _d$data$data.newArrivalProducts;
       setFeaturedProducts(featuredProducts);
-      setProductByCategory(productByCategory);
+      setNewArrivalProducts(newArrivalProducts);
+      // setProductByCategory(productByCategory);
       setLikeCss(d.data.css);
       setLoader(false);
     })["catch"](function (err) {
@@ -4537,162 +4531,122 @@ function Home() {
       setLoader(false);
     });
   }, []);
+  var data = [{
+    title: {
+      mm_name: "အထင်ကရပစ္စည်းများ",
+      en_name: "Recommended For You"
+    },
+    products: featuredProducts
+  }, {
+    title: {
+      mm_name: "အသစ်ရောက်သည့် ပစ္စည်းများ",
+      en_name: "New Arrivals"
+    },
+    products: newArrivalProducts
+  }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
     children: [loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Component_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {}), !loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
       children: [checkProduct && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {}), !checkProduct && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "px-5",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Swiper__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          className: "container",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "row",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-              className: "col-md-12",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                className: "section-heading",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
-                  className: "text-center text-white font-bree",
-                  children: window.locale === "mm" ? "အထင်ကရပစ္စည်းများ" : "Recommended For You"
-                })
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-              className: "col-md-12",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                className: "row",
-                children: featuredProducts.map(function (d) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
-                    href: "/products/detail/".concat(d.slug),
-                    className: "col",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                      className: "card p-3 m-2",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                        style: {
-                          height: "235px",
-                          alignItems: "center",
-                          display: "grid"
-                        },
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
-                          src: d.image_url,
-                          alt: "Item 1",
-                          className: "card-img-top",
-                          style: styles.cardImg
-                        })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                        className: "card-body",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                          className: "card-text text-nowrap overflow-hidden text-black",
-                          style: styles.card,
-                          children: d.name
-                        }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h6", {
-                          className: "mt-2",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
-                            className: "text-primary",
-                            style: styles.lineTrough,
-                            children: ["$", d.sale_price]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
-                            className: "mx-2",
-                            children: ["$", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("b", {
-                              className: "text-danger ms-2",
-                              children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "% off"]
-                            })]
-                          })]
-                        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h6", {
-                            className: "mt-2 text-primary",
-                            children: ["$", d.sale_price]
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                          view: d.view_count,
-                          like: d.like_count,
-                          product: d.slug
-                        })]
-                      })]
-                    })
-                  }, d.slug);
-                })
-              })
-            })]
-          })
-        }), productByCategory.map(function (d) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-            className: "container",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-              className: "row",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                className: "col-md-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                  className: "section-heading",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                    className: "line-dec"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
-                    href: "products?category=".concat(d.slug),
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
-                      children: window.locale === "mm" ? d.mm_name : d.name
-                    })
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                className: "col-md-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                  className: "row",
-                  children: d.product.map(function (d) {
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
-                      href: "/products/detail/".concat(d.slug),
-                      className: "col",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                        className: "card p-3 m-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                          style: {
-                            height: "235px",
-                            alignItems: "center",
-                            display: "grid"
-                          },
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
-                            src: d.image_url,
-                            alt: "Item 1",
-                            style: styles.cardImg
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                          className: "card-body",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                            className: "card-text text-nowrap overflow-hidden text-black",
-                            style: styles.card,
-                            children: d.name
-                          }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h6", {
-                            className: "mt-2",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
-                              className: "text-primary",
-                              style: styles.lineTrough,
-                              children: ["$", d.sale_price]
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
-                              className: "mx-2",
-                              children: ["$", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("b", {
-                                className: "text-danger ms-2",
-                                children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "% off"]
-                              })]
-                            })]
-                          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h6", {
-                              className: "mt-2 text-primary",
-                              children: ["$", d.sale_price]
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                            view: d.view_count,
-                            like: d.like_count,
-                            product: d.slug
-                          })]
-                        })]
-                      })
-                    }, d.slug);
-                  })
-                })
-              })]
-            })
-          }, d.slug);
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Swiper__WEBPACK_IMPORTED_MODULE_5__["default"], {}), data.map(function (_ref) {
+          var title = _ref.title,
+            products = _ref.products;
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ProductShowcase, {
+            title: title,
+            products: products
+          });
         })]
       })]
     })]
   });
 }
+var ProductShowcase = function ProductShowcase(_ref2) {
+  var title = _ref2.title,
+    products = _ref2.products;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    className: "container-fluid",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      className: "row",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        className: "col-md-12",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          className: "section-heading",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+            className: "text-center text-white font-bree",
+            children: window.locale === "mm" ? title.mm_name : title.en_name
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        className: "col-md-12",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          className: "row",
+          children: products.map(function (product) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              className: "col-md-3",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "card p-3 m-2 w-100",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "product-img-container",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                    src: product.image_url,
+                    alt: product.slug,
+                    className: "product-img"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "card-body",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                    className: "w-100",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+                      className: "card-text",
+                      children: product.name
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                    className: "d-flex justify-content-between align-items-center mt-3",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                      children: [product.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h6", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                          className: "text-black",
+                          children: "Price:"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+                          className: "text-black",
+                          style: styles.lineTrough,
+                          children: ["$", product.sale_price]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+                          className: "mx-2",
+                          children: ["$", product.sale_price - product.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("b", {
+                            className: "text-danger ms-2",
+                            children: [(product.discount_price / product.sale_price * 100).toPrecision(2), "% off"]
+                          })]
+                        })]
+                      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h6", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                            className: "text-black",
+                            children: "Price:"
+                          }), "$", product.sale_price]
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                        view: product.view_count,
+                        like: product.like_count,
+                        product: product.slug
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                      className: "btn btn-outline-dark py-2",
+                      style: {
+                        height: "fit-content"
+                      },
+                      children: "View More"
+                    })]
+                  })]
+                })]
+              })
+            }, product.slug);
+          })
+        })
+      })]
+    })
+  });
+};
 
 /***/ }),
 
@@ -7018,7 +6972,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#banner-container {\r\n    position: relative;\r\n}\r\n\r\n#banner {\r\n    position: relative;\r\n    z-index: 0;\r\n    height: 80vh;\r\n    background: linear-gradient(\r\n        90deg,\r\n        #0b1315 0.25%,\r\n        #042547 50%,\r\n        #0b1315 99.75%\r\n    );\r\n    padding: 80px 120px;\r\n}\r\n\r\n#bannerText {\r\n    font-family: Bree Serif, system-ui;\r\n    font-size: 40px;\r\n    font-weight: 400;\r\n    line-height: 54px;\r\n    letter-spacing: 0em;\r\n    text-align: left;\r\n    color: #ffffff;\r\n    position: relative;\r\n    z-index: 1;\r\n}\r\n\r\n#banner-box-img {\r\n    position: absolute;\r\n    top: 48px;\r\n    right: 25%;\r\n}\r\n\r\n#shoe-one-img {\r\n    position: absolute;\r\n    right: 8%;\r\n    top: 40%;\r\n}\r\n\r\n#shoe-two-img {\r\n    position: absolute;\r\n    top: 2%;\r\n    right: 2%;\r\n}\r\n\r\n.swiper-button-prev,\r\n.swiper-button-next {\r\n    display: none;\r\n}\r\n\r\n.swiper-button-prev::after {\r\n    content: \"\\1F878\" !important;\r\n    font-size: 20px;\r\n    font-weight: 900;\r\n    color: #000000;\r\n}\r\n\r\n.swiper-button-next::after {\r\n    content: \"\\1F87A\" !important;\r\n    font-size: 20px;\r\n    font-weight: 900;\r\n    color: #000000;\r\n}\r\n\r\n#swiper-button-prev,\r\n#swiper-button-next {\r\n    position: absolute;\r\n    background-color: #3bd9cf;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 37.5px;\r\n    height: 49.682px;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n}\r\n\r\n#swiper-button-prev {\r\n    top: 45%;\r\n    z-index: 1;\r\n    left: 20px;\r\n}\r\n\r\n#swiper-button-next {\r\n    top: 45%;\r\n    z-index: 1;\r\n    right: 20px;\r\n}\r\n\r\n#buyNowBtn {\r\n    margin-top: 30px;\r\n    margin-left: 5px;\r\n    background-color: #3bd9cf;\r\n    color: #ffffff;\r\n    font-family: Bree Serif, system-ui;\r\n    padding: 10px 60px;\r\n}\r\n\r\n#banner-one {\r\n    position: relative;\r\n    z-index: 0;\r\n    height: 80vh;\r\n    background: linear-gradient(\r\n        90deg,\r\n        #0b1315 0.25%,\r\n        #042547 50%,\r\n        #0b1315 99.75%\r\n    );\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.font-bree {\r\n    font-family: Bree Serif, system-ui;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "#banner-container {\r\n    position: relative;\r\n}\r\n\r\n#banner {\r\n    position: relative;\r\n    z-index: 0;\r\n    height: 80vh;\r\n    background: linear-gradient(\r\n        90deg,\r\n        #0b1315 0.25%,\r\n        #042547 50%,\r\n        #0b1315 99.75%\r\n    );\r\n    padding: 80px 120px;\r\n}\r\n\r\n#bannerText {\r\n    font-family: Bree Serif, system-ui;\r\n    font-size: 40px;\r\n    font-weight: 400;\r\n    line-height: 54px;\r\n    letter-spacing: 0em;\r\n    text-align: left;\r\n    color: #ffffff;\r\n    position: relative;\r\n    z-index: 1;\r\n}\r\n\r\n#banner-box-img {\r\n    position: absolute;\r\n    top: 48px;\r\n    right: 25%;\r\n}\r\n\r\n#shoe-one-img {\r\n    position: absolute;\r\n    right: 8%;\r\n    top: 40%;\r\n}\r\n\r\n#shoe-two-img {\r\n    position: absolute;\r\n    top: 2%;\r\n    right: 2%;\r\n}\r\n\r\n.swiper-button-prev,\r\n.swiper-button-next {\r\n    display: none;\r\n}\r\n\r\n.swiper-button-prev::after {\r\n    content: \"\\1F878\" !important;\r\n    font-size: 20px;\r\n    font-weight: 900;\r\n    color: #000000;\r\n}\r\n\r\n.swiper-button-next::after {\r\n    content: \"\\1F87A\" !important;\r\n    font-size: 20px;\r\n    font-weight: 900;\r\n    color: #000000;\r\n}\r\n\r\n#swiper-button-prev,\r\n#swiper-button-next {\r\n    position: absolute;\r\n    background-color: #3bd9cf;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 37.5px;\r\n    height: 49.682px;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n}\r\n\r\n#swiper-button-prev {\r\n    top: 45%;\r\n    z-index: 1;\r\n    left: 20px;\r\n}\r\n\r\n#swiper-button-next {\r\n    top: 45%;\r\n    z-index: 1;\r\n    right: 20px;\r\n}\r\n\r\n#buyNowBtn {\r\n    margin-top: 30px;\r\n    margin-left: 5px;\r\n    background-color: #3bd9cf;\r\n    color: #ffffff;\r\n    font-family: Bree Serif, system-ui;\r\n    padding: 10px 60px;\r\n}\r\n\r\n#banner-one {\r\n    position: relative;\r\n    z-index: 0;\r\n    height: 80vh;\r\n    background: linear-gradient(\r\n        90deg,\r\n        #0b1315 0.25%,\r\n        #042547 50%,\r\n        #0b1315 99.75%\r\n    );\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.font-bree {\r\n    font-family: Bree Serif, system-ui;\r\n}\r\n\r\n.product-img-container {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.product-img {\r\n    width: 140px;\r\n    height: 75px;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n\r\n.card-text {\r\n    width: 100%;\r\n    font-size: 1.25rem;\r\n    color: #000000;\r\n    font-family: \"Bree Serif\", serif;\r\n    font-weight: 500;\r\n    line-height: 1.5;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n}\r\n\r\n.grid {\r\n    display: grid;\r\n}\r\n\r\n.grid-4 {\r\n    grid-template-columns: repeat(4, 1fr);\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

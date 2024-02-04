@@ -115,3 +115,35 @@
 .font-bree {
     font-family: Bree Serif, system-ui;
 }
+
+.product-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-img {
+    width: 140px;
+    height: 75px;
+    object-fit: cover;
+}
+
+.card-text {
+    width: 100%;
+    font-size: 1.25rem;
+    color: #000000;
+    font-family: "Bree Serif", serif;
+    font-weight: 500;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
