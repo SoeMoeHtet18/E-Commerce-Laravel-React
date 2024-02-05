@@ -156,6 +156,9 @@ const ProductShowcase = ({ title, products }) => (
                                         <button
                                             className="btn btn-outline-dark py-2"
                                             style={{ height: "fit-content" }}
+                                            onClick={() => {
+                                                window.location.href = `/products/detail/${product.slug}`;
+                                            }}
                                         >
                                             View More
                                         </button>

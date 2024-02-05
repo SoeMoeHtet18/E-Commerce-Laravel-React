@@ -4635,6 +4635,9 @@ var ProductShowcase = function ProductShowcase(_ref2) {
                       style: {
                         height: "fit-content"
                       },
+                      onClick: function onClick() {
+                        window.location.href = "/products/detail/".concat(product.slug);
+                      },
                       children: "View More"
                     })]
                   })]

@@ -65,46 +65,20 @@
         </div>
     </div>
 
-    <!-- Subscribe Form Starts Here -->
-    <div class="subscribe-form login-off">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <div class="line-dec"></div>
-                        <h1>Subscribe on One PIECE now!</h1>
-                    </div>
-                </div>
-                <div class="col-md-8 offset-md-2">
-                    <div class="main-content">
-                        <p>
-                            To get up-to-date latest news & products, subscribe on One PIECE.
-                            Do you want it? Subscribe now!!
-                        </p>
-                        <div class="container">
-                            <form id="subscribe" action="" method="get">
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <fieldset>
-                                            <input name="email" type="text" class="form-control" id="email"
-                                                onfocus="if(this.value == 'Your Email...') { this.value = ''; }"
-                                                onBlur="if(this.value == '') { this.value = 'Your Email...';}"
-                                                value="Your Email..." required="" />
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <fieldset>
-                                            <button type="submit" id="form-submit" class="button">
-                                                Subscribe Now!
-                                            </button>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- App Marketing Here -->
+    <div id="app-marketing-container">
+        <div class="d-flex">
+            <div class="color-tone bg-black"></div>
+            <div class="color-tone bg-main"></div>
+            <p id="app-marketing-title">Get The New App</p>
+            <p id="app-marketing-text">All you favorite features like exclusive access, now with a
+                <br>better shopping experince
+                <br>
+                <span class="text-decoration-underline">Learn More</span>
+            </p>
+        </div>
+        <div class="h-100">
+            <img src="{{asset('assets/img/banner/app_card.jpg')}}" alt="Get The App" class="h-100"/>
         </div>
     </div>
     <!-- Subscribe Form Ends Here -->
@@ -115,7 +89,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="logo">
-                        <h2 class="my-5" style="color: #f56e07">One PIECE</h2>
+                        <h2 class="my-5 text-white">NH Online Mart</h2>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -151,23 +125,6 @@
         </div>
     </div>
     <!-- Footer Ends Here -->
-
-    <!-- Sub Footer Starts Here -->
-    <div class="sub-footer login-off">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copyright-text">
-                        <p>
-                            Copyright &copy; 2019 Company Name - Design:
-                            <a rel="nofollow" href="">Tooplate</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Sub Footer Ends Here -->
 
     {{-- Jquery --}}
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"

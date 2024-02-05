@@ -43,4 +43,43 @@
         cursor: pointer;
         font-size: 30px;
     }
+
+    #app-marketing-container {
+        height: 60vh;
+        width: 100%;
+        background-color: white;
+        padding: 0 15%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .color-tone {
+        min-width: 80px;
+        max-width: 150px;
+        height: 100%;
+    }
+
+    .bg-main {
+        background-color: #27ada4;
+    }
+
+    #app-marketing-title {
+        position: absolute;
+        top: 12%;
+        left: 15%;
+        font-size: 1.5rem;
+        color: #3CD9D0;
+    }
+
+    #app-marketing-text {
+        position: absolute;
+        padding: 10px 0;
+        top: 30%;
+        left: 15%;
+        font-size: 1.25rem;
+        background-color: white;
+        line-height: 2;
+        z-index: 10;
+    }
 </style>
