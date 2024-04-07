@@ -16,7 +16,7 @@ export default function Home() {
     };
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const [newArrivalProducts, setNewArrivalProducts] = useState([]);
-    // const [productByCategory, setProductByCategory] = useState([]);
+    const [productByCategory, setProductByCategory] = useState([]);
     const [loader, setLoader] = useState(true);
     const [checkProduct, setCheckProduct] = useState(false);
     const [likeCss, setLikeCss] = useState("");
@@ -28,7 +28,7 @@ export default function Home() {
                 const { featuredProducts, newArrivalProducts } = d.data.data;
                 setFeaturedProducts(featuredProducts);
                 setNewArrivalProducts(newArrivalProducts);
-                // setProductByCategory(productByCategory);
+                setProductByCategory(productByCategory);
                 setLikeCss(d.data.css);
                 setLoader(false);
             })

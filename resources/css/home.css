@@ -112,6 +112,10 @@
     justify-content: space-between;
 }
 
+#banner-one img {
+    height: 100%;
+}
+
 .font-bree {
     font-family: Bree Serif, system-ui;
 }
