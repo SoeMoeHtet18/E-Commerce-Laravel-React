@@ -1,37 +1,28 @@
-# Use an official PHP runtime as a parent image
-FROM php:7.4-fpm
+FROM php:8.0-apache
+
+# Install dependencies
+RUN apt-get update && apt-get install -y libssl1.0.0 libssl-dev
+
+# Enable Apache mods
+RUN a2enmod rewrite
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    wget \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    zip \
-    unzip \
-    git \
-    curl \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
+# Copy project files
+COPY . .
 
-# Install the required version of OpenSSL
-RUN apt-get update && apt-get install -y libssl1.1
+# Install PHP dependencies
+RUN docker-php-ext-install pdo pdo_mysql
 
-# Install Composer
+# Install Composer and PHP dependencies
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install
 
-# Copy existing application directory contents
-COPY . /var/www
+# Install Node.js and NPM dependencies for React
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install
+RUN npm run build
 
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data . /var/www
-
-# Change current user to www
-USER www-data
-
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
-CMD ["php-fpm"]
+EXPOSE 80
